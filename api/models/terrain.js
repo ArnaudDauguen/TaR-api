@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const env = process.env
-mongoose.connect('mongodb://' + (env.MONGO_HOST || 'localhost') + ':' + (env.MONGO_PORT || 27017) +'/Terrains')
+const mongooseTerrain = mongoose.createConnection('mongodb://' + (env.MONGO_HOST || 'localhost') + ':' + (env.MONGO_PORT || 27017) +'/Terrains')
 
 // Create a schema
 const TerrainSchema = new mongoose.Schema({
@@ -10,17 +10,21 @@ const TerrainSchema = new mongoose.Schema({
   })
   
 // Create a model based on the schema
-const Terrains = mongoose.model('Terrains', TerrainSchema);
+const Terrains = mongooseTerrain.model('Terrains', TerrainSchema);
 
   
 module.exports = {
+    get: (terrainId) => {
+        return Terrains.findOne({id: terrainId})
+    },
+
+    getAll: (limit, offset) => {
+        return Terrains.find().skip(offset).limit(limit);
+    },
+
     insert: async (params) => {
         params.id = await Terrains.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1; // recup le plus grand id, +1
         return Terrains.create(params);
-    },
-
-    get: (terrainId) => {
-        return Terrains.findOne({id: terrainId})
     },
 
     update: (terrainId, params) => {
@@ -34,15 +38,11 @@ module.exports = {
     },
 
     remove: (terrainId) => {
-        return Terrains.remove({id: terrainId});
+        return Terrains.findOneAndRemove({id: terrainId});
     },
 
     count: () => {
       return Terrains.count();
-    },
-
-    getAll: (limit, offset) => {
-        return Terrains.find().skip(offset).limit(limit);
     },
 
     

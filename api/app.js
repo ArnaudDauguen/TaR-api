@@ -3,7 +3,7 @@ const express = require('express')
 const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 
-const PORT = process.PORT || 8080
+const PORT = process.env.PORT || 8080
 const app = express()
 
 
@@ -17,10 +17,13 @@ app.use(methodOverride('_method', {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-
 // Routeurs
 app.use('/users', require('./routes/users'))
 app.use('/dungeons', require('./routes/dungeons'))
+app.use('/ressources', require('./routes/ressources'))
+// app.use('/terrains', require('./routes/terrains'))
+// app.use('/stuffs', require('./routes/stuffs'))
+
 // Erreur 404
 app.use(function(req, res, next) {
     let err = new Error('Not Found')
@@ -31,17 +34,14 @@ app.use(function(req, res, next) {
   
 // Gestion des erreurs
 app.use(function(err, req, res, next) {
-    let data = {
-        message: err.message,
-        status: err.status || 500
-    }
+    err.message = err.message || "Something went wrong"
+    err.status = err.status || 500
 
-    res.status(data.status)
-    res.send(data)
+    res.status(err.status).json(err)
 })
   
 
 app.listen(PORT, () => {
-console.log('> Serveur démarré sur le port : ', PORT)
+    console.log('> Serveur démarré sur le port : ', PORT)
 });
   

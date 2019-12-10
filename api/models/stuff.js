@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const env = process.env
-mongoose.connect('mongodb://' + (env.MONGO_HOST || 'localhost') + ':' + (env.MONGO_PORT || 27017) +'/Stuff')
+const mongooseStuff = mongoose.createConnection('mongodb://' + (env.MONGO_HOST || 'localhost') + ':' + (env.MONGO_PORT || 27017) +'/Stuffs')
 
 // Create a schema
 const StuffSchema = new mongoose.Schema({
@@ -13,17 +13,21 @@ const StuffSchema = new mongoose.Schema({
   })
   
 // Create a model based on the schema
-const Stuff = mongoose.model('Stuff', StuffSchema);
+const Stuff = mongooseStuff.model('Stuff', StuffSchema);
 
   
 module.exports = {
+    get: (stuffId) => {
+        return Stuff.findOne({id: stuffId})
+    },
+
+    getAll: (limit, offset) => {
+        return Stuff.find().skip(offset).limit(limit);
+    },
+
     insert: async (params) => {
         params.id = await Stuff.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1; // recup le plus grand id, +1
         return Stuff.create(params);
-    },
-
-    get: (stuffId) => {
-        return Stuff.findOne({id: stuffId})
     },
 
     update: (stuffId, params) => {
@@ -40,15 +44,11 @@ module.exports = {
     },
 
     remove: (stuffId) => {
-        return Stuff.remove({id: stuffId});
+        return Stuff.findOneAndRemove({id: stuffId});
     },
 
     count: () => {
       return Stuff.count();
-    },
-
-    getAll: (limit, offset) => {
-        return Stuff.find().skip(offset).limit(limit);
     },
 
     

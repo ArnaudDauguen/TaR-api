@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const env = process.env
-mongoose.connect('mongodb://' + (env.MONGO_HOST || 'localhost') + ':' + (env.MONGO_PORT || 27017) +'/Dungeons')
+const mongooseDungeon = mongoose.createConnection('mongodb://' + (env.MONGO_HOST || 'localhost') + ':' + (env.MONGO_PORT || 27017) +'/Dungeons')
 
 // Create a schema
 const DungeonSchema = new mongoose.Schema({
@@ -18,17 +18,25 @@ const DungeonSchema = new mongoose.Schema({
   })
   
 // Create a model based on the schema
-const Dungeons = mongoose.model('Dungeons', DungeonSchema);
+const Dungeons = mongooseDungeon.model('Dungeons', DungeonSchema);
 
   
 module.exports = {
+    get: (dungeonId) => {
+        return Dungeons.findOne({id: dungeonId})
+    },
+
+    getAll: (limit, offset) => {
+        return Dungeons.find().skip(offset).limit(limit);
+    },
+
+    getByUserId: (userId) => {
+        return Dungeons.find({creatorId: userId})
+    },
+
     insert: async (params) => {
         params.id = await Dungeons.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1; // recup le plus grand id, +1
         return Dungeons.create(params);
-    },
-
-    get: (dungeonId) => {
-        return Dungeons.findOne({id: dungeonId})
     },
 
     update: (dungeonId, params) => {
@@ -45,15 +53,11 @@ module.exports = {
     },
 
     remove: (dungeonId) => {
-        return Dungeons.remove({id: dungeonId});
+        return Dungeons.findOneAndRemove({id: dungeonId});
     },
 
     count: () => {
       return Dungeons.count();
-    },
-
-    getAll: (limit, offset) => {
-        return Dungeons.find().skip(offset).limit(limit);
     },
 
     
