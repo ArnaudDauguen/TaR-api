@@ -17,8 +17,8 @@ sudo docker cp ./db/Users.json mongodb:/Users.json
 sudo docker exec -it mongodb bash
 ```
 ```
-mongoimport -c Dungeons -d Try-and-Redie < Dungeons.json
-mongoimport -c Stuff -d Try-and-Redie < Stuff.json
-mongoimport -c Terrain -d Try-and-Redie < Terrain.json
-mongoimport -c Users -d Try-and-Redie < Users.json
+mongoimport -c dungeons -d Dungeons < Dungeons.json
+mongoimport -c stuffs -d Stuffs < Stuff.json
+mongoimport -c terrains -d Terrains < Terrain.json
+mongoimport -c users -d Users < Users.json
 ```
