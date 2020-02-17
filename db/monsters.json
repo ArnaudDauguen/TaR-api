@@ -1,0 +1,1 @@
+{"_id":{"$oid":"5dd4128833de2824ef6705f0"},"id":{"$numberInt":"1"},"name":"dragon","hp":{"$numberInt":"200"}}
