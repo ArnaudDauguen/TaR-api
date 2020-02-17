@@ -1,9 +1,8 @@
-const mongoose = require('mongoose')
-const env = process.env
-const mongooseDungeon = mongoose.createConnection('mongodb://' + (env.MONGO_HOST || 'localhost') + ':' + (env.MONGO_PORT || 27017) +'/Dungeons')
+const mongoose = require("./db.js")
 
 // Create a schema
-const DungeonSchema = new mongoose.Schema({
+//(name, varaibles, table)
+const Dungeons = mongoose.model("Dungeons", {
     id: Number,
     name: String,
     creatorId: Number,
@@ -15,10 +14,7 @@ const DungeonSchema = new mongoose.Schema({
     paths: Array,
     stuff: Array,
     cases: Array,
-  })
-  
-// Create a model based on the schema
-const Dungeons = mongooseDungeon.model('Dungeons', DungeonSchema);
+}, "Dungeons")
 
   
 module.exports = {
@@ -27,7 +23,7 @@ module.exports = {
     },
 
     getAll: (limit, offset) => {
-        return Dungeons.find().skip(offset).limit(limit);
+        return Dungeons.find().skip(offset).limit(limit).exec();
     },
 
     getByUserId: (userId) => {

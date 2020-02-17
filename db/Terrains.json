@@ -1,0 +1,6 @@
+[
+    {"_id":{"$oid":"5dd4138623de2824ef6705f0"},"id":0,"name":"ground","effect":{"speed":1,"damage":0}},
+    {"_id":{"$oid":"5dd4126833de2824ef6705f0"},"id":1,"name":"wall","effect":{"speed":1,"damage":0}},
+    {"_id":{"$oid":"5dd4133862de2824ef6705f0"},"id":2,"name":"entrance","effect":{"speed":1,"damage":0}},
+    {"_id":{"$oid":"5dd4861323de2824ef6705f0"},"id":3,"name":"throne","effect":{"speed":1,"damage":0}}
+]

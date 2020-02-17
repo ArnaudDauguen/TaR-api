@@ -1,33 +1,30 @@
-const mongoose = require('mongoose')
-const env = process.env
-const mongooseStuff = mongoose.createConnection('mongodb://' + (env.MONGO_HOST || 'localhost') + ':' + (env.MONGO_PORT || 27017) +'/Stuffs')
+const mongoose = require("./db.js")
 
 // Create a schema
-const StuffSchema = new mongoose.Schema({
+const Stuffs = mongoose.model("Stuffs",{
     id: Number,
     name: String,
     price: Number,
     type: String,
     attack: Number,
     armor: Number,
-  })
-  
-// Create a model based on the schema
-const Stuff = mongooseStuff.model('Stuff', StuffSchema);
+    range: Number,
+    difficulty: Number,
+}, "Stuffs")
 
   
 module.exports = {
     get: (stuffId) => {
-        return Stuff.findOne({id: stuffId})
+        return Stuffs.findOne({id: stuffId})
     },
 
     getAll: (limit, offset) => {
-        return Stuff.find().skip(offset).limit(limit);
+        return Stuffs.find().skip(offset).limit(limit);
     },
 
     insert: async (params) => {
-        params.id = await Stuff.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1; // recup le plus grand id, +1
-        return Stuff.create(params);
+        params.id = await Stuffs.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1; // recup le plus grand id, +1
+        return Stuffs.create(params);
     },
 
     update: (stuffId, params) => {
@@ -40,15 +37,15 @@ module.exports = {
         if(params.attack) toUpdate.attack = params.attack;
         if(params.armor) toUpdate.armor = params.armor;
 
-        return Stuff.findOneAndUpdate({id: stuffId}, toUpdate);
+        return Stuffs.findOneAndUpdate({id: stuffId}, toUpdate);
     },
 
     remove: (stuffId) => {
-        return Stuff.findOneAndRemove({id: stuffId});
+        return Stuffs.findOneAndRemove({id: stuffId});
     },
 
     count: () => {
-      return Stuff.count();
+      return Stuffs.count();
     },
 
     

@@ -1,16 +1,11 @@
-const mongoose = require('mongoose')
-const env = process.env
-const mongooseTerrain = mongoose.createConnection('mongodb://' + (env.MONGO_HOST || 'localhost') + ':' + (env.MONGO_PORT || 27017) +'/Terrains')
+const mongoose = require("./db.js")
 
 // Create a schema
-const TerrainSchema = new mongoose.Schema({
+const Terrains = mongoose.model("Terrains", {
     id: Number,
     name: String,
     effect: Array,
-  })
-  
-// Create a model based on the schema
-const Terrains = mongooseTerrain.model('Terrains', TerrainSchema);
+}, "Terrains")
 
   
 module.exports = {
@@ -18,8 +13,8 @@ module.exports = {
         return Terrains.findOne({id: terrainId})
     },
 
-    getAll: (limit, offset) => {
-        return Terrains.find().skip(offset).limit(limit);
+    getAll: async (limit, offset) => {
+        return await Terrains.find().skip(offset).limit(limit);
     },
 
     insert: async (params) => {

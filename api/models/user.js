@@ -1,18 +1,13 @@
-const mongoose = require('mongoose')
-const env = process.env
-const mongooseUser = mongoose.createConnection('mongodb://' + (env.MONGO_HOST || 'localhost') + ':' + (env.MONGO_PORT || 27017) +'/Users')
+const mongoose = require("./db.js")
 
 // Create a schema
-const UserSchema = new mongoose.Schema({
+const Users = mongoose.model("Users", {
     id: Number,
     email: String,
     pseudo: String,
     password: String,
     exp: Number,
-  })
-  
-// Create a model based on the schema
-const Users = mongooseUser.model('Users', UserSchema);
+}, "Users")
 
   
 module.exports = {

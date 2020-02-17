@@ -4,17 +4,14 @@ const Dungeon = require('../models/dungeon')
 
 // get All
 router.get('/', function(req, res, next) {
-  console.log(1)
   if(!req.query.limit || isNaN(req.query.limit)) req.query.limit = 10
   if(!req.query.offset || isNaN(req.query.offset)) req.query.offset = 0
-  console.log(req.query)
   Dungeon.getAll(parseInt(req.query.limit), parseInt(req.query.offset))
   .then((dungeons) => {
-    console.log(3)
     res.status(200).json(dungeons);
   })
   .catch((err) => {
-    console.log(4)
+      console.log(err)
     return next(err)
   })
 })
@@ -34,9 +31,9 @@ router.get('/:dungeonId', function(req, res, next){
 
 // create
 router.post('/', function(req, res, next) {
-  if(!req.query.email || !req.query.password || !req.query.pseudo) return next(new Error('Bad request'))
-  req.query.exp = req.query.exp || 0
-  Dungeon.insert(req.query)
+  if(!req.body.email || !req.body.password || !req.body.pseudo) return next(new Error('Bad request'))
+  req.body.exp = req.body.exp || 0
+  Dungeon.insert(req.body)
   .then((dungeonCreated) => {
     if(!dungeonCreated) return next()
     res.status(201).json(dungeonCreated)
@@ -49,9 +46,9 @@ router.post('/', function(req, res, next) {
 // update
 router.patch('/:dungeonId', function(req, res, next) {
   if(isNaN(req.params.dungeonId)) return next()
-  Dungeon.update(req.params.dungeonId, req.query)
+  Dungeon.update(req.params.dungeonId, req.body)
   .then((dungeon) =>{
-    res.status(200).json(dungeon)
+    res.status(204).json(dungeon)
   })
   .catch((err) => {
     return next(err)
@@ -63,7 +60,7 @@ router.delete('/:dungeonId', function(req, res, next) {
   if(isNaN(req.params.dungeonId)) return next()
   Dungeon.remove(req.params.dungeonId)
   .then((dungeon) => {
-    res.status(200).json({deleted: dungeon || 'no dungeon'})
+    res.status(204)
   })
   .catch((err) => {
     return next(err)

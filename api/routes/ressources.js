@@ -6,9 +6,10 @@ const Terrain = require('../models/terrain')
 // get All
 router.get('/', function(req, res, next) {
   Promise.all([
-    Stuff.get(1),
+    Stuff.getAll(),
     Terrain.getAll(),
   ]).then((ressources) => {
+      console.log(ressources)
     const datas = {
       stuffs: ressources[0],
       terrains: ressources[1],

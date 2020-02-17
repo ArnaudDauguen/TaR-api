@@ -6,6 +6,8 @@
 git clone git@git.ynov-bordeaux.com:85791/try-and-redie.git
 cd try-and-redie
 ```
+### Import bases datas
+#### With docker
 ```
 sudo docker pull mongo
 sudo docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:latest
@@ -22,3 +24,4 @@ mongoimport -c stuffs -d Stuffs < Stuff.json
 mongoimport -c terrains -d Terrains < Terrain.json
 mongoimport -c users -d Users < Users.json
 ```
+#### Or import manually
