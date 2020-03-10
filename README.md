@@ -1,27 +1,50 @@
-# I. Présentation
+# I. Presentation
+Try and Redie is th 'Fil Rouge' project for Ingésup B3a.
+Goals are to create a game and an AI to play in. This project game is, for the player, to design maze as complexe as posible. The AI will someday solve the maze by diying inside and founding the best path. Once completed, the player will gain score based on the number of the AI deaths.
 
-
-# 2. Installation
+# 2. Install
 ```
-git clone git@git.ynov-bordeaux.com:85791/try-and-redie.git
-cd try-and-redie
+git clone https://github.com/ArnaudDauguen/TaR-api.git
 ```
-### Import bases datas
-#### With docker
+## Import starting datas
+### With docker
 ```
 sudo docker pull mongo
 sudo docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:latest
 
+cd Tar-api
 sudo docker cp ./db/Dungeons.json mongodb:/Dungeons.json
+sudo docker cp ./db/Monsters.json mongodb:/Monsters.json
+sudo docker cp ./db/Others.json mongodb:/Others.json
 sudo docker cp ./db/Stuff.json mongodb:/Stuff.json
 sudo docker cp ./db/Terrain.json mongodb:/Terrain.json
 sudo docker cp ./db/Users.json mongodb:/Users.json
 sudo docker exec -it mongodb bash
 ```
 ```
-mongoimport -c dungeons -d Dungeons < Dungeons.json
-mongoimport -c stuffs -d Stuffs < Stuff.json
-mongoimport -c terrains -d Terrains < Terrain.json
-mongoimport -c users -d Users < Users.json
+mongoimport -c dungeons -d TaR < Dungeons.json
+mongoimport -c stuffs -d TaR < Stuff.json
+mongoimport -c terrains -d TaR < Terrain.json
+mongoimport -c users -d TaR < Users.json
 ```
-#### Or import manually
+### Or import manually
+* install MongoDb
+* install GUI for mongo (Compass or Atlas) to manage datas
+* import datas
+    * create database named `TaR`
+    * create collection named `Dungeons` and import `TaR-api/db/Dungeons.json` or copy-paste his content
+    * create collection named `Monsters` and import `TaR-api/db/Monsters.json` or copy-paste his content
+    * create collection named `Others` and import `TaR-api/db/Others.json` or copy-paste his content
+    * create collection named `Stuffs` and import `TaR-api/db/Stuffs.json` or copy-paste his content
+    * create collection named `Terrains` and import `TaR-api/db/Terrains.json` or copy-paste his content
+    * create collection named `Users` and import `TaR-api/db/Users.json` or copy-paste his content
+
+
+## Start API
+* move to TarR-api/api
+```
+npm run start
+```
+
+
+git clone https://github.com/ArnaudDauguen/TaR_levelEditor.git
