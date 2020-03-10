@@ -23,7 +23,8 @@ module.exports = {
     },
 
     insert: async (params) => {
-        params.id = await Stuffs.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1; // recup le plus grand id, +1
+        const lastId = await Stuffs.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1; // recup le plus grand id, +1
+        params.id = lastId.id +1
         return Stuffs.create(params);
     },
 
