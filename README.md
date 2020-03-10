@@ -2,7 +2,7 @@
 Try and Redie is th 'Fil Rouge' project for Ingésup B3a.
 Goals are to create a game and an AI to play in. This project game is, for the player, to design maze as complexe as posible. The AI will someday solve the maze by diying inside and founding the best path. Once completed, the player will gain score based on the number of the AI deaths.
 
-# 2. Install
+# 2. Install API
 ```
 git clone https://github.com/ArnaudDauguen/TaR-api.git
 ```
@@ -47,4 +47,5 @@ npm run start
 ```
 
 
-git clone https://github.com/ArnaudDauguen/TaR_levelEditor.git
+# 3. Install level editor
+Please visit [this page](https://github.com/ArnaudDauguen/TaR_levelEditor)
