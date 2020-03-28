@@ -1,6 +1,4 @@
-[
-    {"_id":{"$oid":"5dd4138623de2824ef6705f0"},"id":0,"name":"ground","effect":{"speed":1,"damage":0}},
-    {"_id":{"$oid":"5dd4126833de2824ef6705f0"},"id":1,"name":"wall","effect":{"speed":1,"damage":0}},
-    {"_id":{"$oid":"5dd4133862de2824ef6705f0"},"id":2,"name":"entrance","effect":{"speed":1,"damage":0}},
-    {"_id":{"$oid":"5dd4861323de2824ef6705f0"},"id":3,"name":"throne","effect":{"speed":1,"damage":0}}
-]
+{"_id":{"$oid":"5dd4138623de2824ef6705f0"},"id":{"$numberInt":"0"},"name":"ground","speed":{"$numberInt":"1"},"damage":{"$numberInt":"0"}}
+{"_id":{"$oid":"5dd4126833de2824ef6705f0"},"id":{"$numberInt":"1"},"name":"wall","speed":{"$numberInt":"0"},"damage":{"$numberInt":"0"}}
+{"_id":{"$oid":"5dd4133862de2824ef6705f0"},"id":{"$numberInt":"2"},"name":"entrance","speed":{"$numberInt":"1"},"damage":{"$numberInt":"0"}}
+{"_id":{"$oid":"5dd4861323de2824ef6705f0"},"id":{"$numberInt":"3"},"name":"throne","speed":{"$numberInt":"1"},"damage":{"$numberInt":"0"}}

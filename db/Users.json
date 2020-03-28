@@ -1,1 +1,1 @@
-{"_id":{"$oid":"5dd4131d23de2824ef6705b5"},"id":0,"email":"lolo@gmail.io","password":"motdepasse","pseudo":"moi","exp":0}
+{"_id":{"$oid":"5dd4131d23de2824ef6705b5"},"id":{"$numberInt":"0"},"email":"lolo@gmail.io","password":"motdepasse","pseudo":"moi","exp":{"$numberInt":"0"}}

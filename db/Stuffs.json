@@ -1,1 +1,1 @@
-{"_id":{"$oid":"5dd4118723de2824ef670533"},"id":0,"name":"Great Bow","price":1000,"type":"bow","attack":150,"armor":0,"range": 1,"difficulty":-100}
+{"_id":{"$oid":"5dd4118723de2824ef670533"},"id":{"$numberInt":"0"},"name":"Great Bow","price":{"$numberInt":"1000"},"type":"bow","attack":{"$numberInt":"150"},"armor":{"$numberInt":"0"},"range":{"$numberInt":"1"},"difficulty":{"$numberInt":"-100"}}

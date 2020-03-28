@@ -4,7 +4,8 @@ const mongoose = require("./db.js")
 const Terrains = mongoose.model("Terrains", {
     id: Number,
     name: String,
-    effect: Array,
+    speed: Number,
+    damage: Number,
 }, "Terrains")
 
   
