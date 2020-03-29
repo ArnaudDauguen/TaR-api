@@ -18,6 +18,10 @@ module.exports = {
         return await Terrains.find().skip(offset).limit(limit);
     },
 
+    getAllWithout_id: async (limit, offset) => {
+        return await Terrains.find({},{"_id": 0}).skip(offset).limit(limit).exec();
+    },
+
     insert: async (params) => {
         const lastId = await Terrains.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1; // recup le plus grand id, +1
         params.id = lastId.id +1

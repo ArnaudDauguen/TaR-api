@@ -18,16 +18,20 @@ const Dungeons = mongoose.model("Dungeons", {
 
   
 module.exports = {
-    get: (dungeonId) => {
-        return Dungeons.findOne({id: dungeonId})
+    get: async (dungeonId) => {
+        return await Dungeons.findOne({id: dungeonId})
     },
 
-    getAll: (limit, offset) => {
-        return Dungeons.find().skip(offset).limit(limit).exec();
+    getAll: async (limit, offset) => {
+        return await Dungeons.find().skip(offset).limit(limit).exec();
     },
 
-    getByUserId: (userId) => {
-        return Dungeons.find({creatorId: userId})
+    getAllWithout_id: async (limit, offset) => {
+        return await Dungeons.find({},{"_id": 0}).skip(offset).limit(limit).exec();
+    },
+
+    getByUserId: async (userId) => {
+        return await Dungeons.find({creatorId: userId})
     },
 
     insert: async (params) => {

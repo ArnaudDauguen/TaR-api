@@ -14,17 +14,12 @@ router.get('/ids', function (req, res, next) {
         Other.getAll(),
     ])
     .then((ressources) => {
-        console.log(ressources[0])
-        console.log(ressources[1])
-        console.log(ressources[2])
-        console.log(ressources[3])
         const datas = {
             stuffs: ressources[0].map(x => x._doc.id),
             terrains: ressources[1].map(x => x._doc.id),
             monsters: ressources[2].map(x => x._doc.id),
             others: ressources[3].map(x => x._doc.id),
         }
-        console.log(datas)
         res.status(200).json(datas)
     })
     .catch((err) => {
@@ -37,16 +32,16 @@ router.get('/ids', function (req, res, next) {
 // get All
 router.get('/', function (req, res, next) {
     Promise.all([
-        Stuff.getAll(),
-        Terrain.getAll(),
-        Monster.getAll(),
-        Other.getAll(),
+        Stuff.getAllWithout_id(),
+        Terrain.getAllWithout_id(),
+        Monster.getAllWithout_id(),
+        Other.getAllWithout_id(),
     ]).then((ressources) => {
         const datas = {
             stuffs: ressources[0],
             terrains: ressources[1],
             monsters: ressources[2],
-            others: ressources[3],
+            others: ressources[3].map(x => x._doc.id),
         }
         res.status(200).json(datas)
     })

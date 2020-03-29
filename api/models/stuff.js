@@ -22,6 +22,10 @@ module.exports = {
         return Stuffs.find().skip(offset).limit(limit);
     },
 
+    getAllWithout_id: async (limit, offset) => {
+        return await Stuffs.find({},{"_id": 0}).skip(offset).limit(limit).exec();
+    },
+
     insert: async (params) => {
         const lastId = await Stuffs.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1; // recup le plus grand id, +1
         params.id = lastId.id +1

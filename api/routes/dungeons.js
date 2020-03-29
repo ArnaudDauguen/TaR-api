@@ -62,7 +62,18 @@ router.get('/', function (req, res, next) {
     if (!req.query.offset || isNaN(req.query.offset)) req.query.offset = 0
     Dungeon.getAll(parseInt(req.query.limit), parseInt(req.query.offset))
         .then((dungeons) => {
-            res.status(200).json(dungeons);
+            const utilInfos = dungeons.map(d => {return {
+                name: d.name,
+                creatorId: d.creatorId, 
+                timeFailed: d.timeFailed, 
+                size: d.size, 
+                difficulty: d.difficulty, 
+                id: d.id, 
+                cases: d.cases, 
+                stuff: d.stuff, 
+                paths: d.paths, 
+            }})
+            res.status(200).json(utilInfos);
         })
         .catch((err) => {
             console.log(err)
