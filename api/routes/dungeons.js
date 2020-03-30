@@ -2,8 +2,24 @@ const router = require('express').Router()
 const Dungeon = require('../models/dungeon')
 
 
+// add path
+router.post('/:dungeonId/path', (req, res, next) => {
+    if (isNaN(req.params.dungeonId)) return next()
+    // if(!req.body.email || !req.body.password || !req.body.pseudo) return next(new Error('Bad credentials'))
+    if(req.body.path === null || req.body.path === undefined) return next('No path send')
+    Dungeon.addPath(req.params.dungeonId, req.body.path)
+        .then((dungeon) => {
+            if (!dungeon) return next()
+            res.status(200).json(dungeon)
+        })
+        .catch((err) => {
+            return next(err)
+        })
+
+})
+
 // get one
-router.get('/:dungeonId', function (req, res, next) {
+router.get('/:dungeonId', (req, res, next) => {
     if (isNaN(req.params.dungeonId)) return next()
     Dungeon.get(req.params.dungeonId)
         .then((dungeon) => {
@@ -17,7 +33,7 @@ router.get('/:dungeonId', function (req, res, next) {
 
 
 // update
-router.patch('/:dungeonId', function (req, res, next) {
+router.patch('/:dungeonId', (req, res, next) => {
     if (isNaN(req.params.dungeonId)) return next()
     Dungeon.update(req.params.dungeonId, req.body)
         .then((dungeon) => {
@@ -29,7 +45,7 @@ router.patch('/:dungeonId', function (req, res, next) {
 })
 
 // delete
-router.delete('/:dungeonId', function (req, res, next) {
+router.delete('/:dungeonId', (req, res, next) => {
     if (isNaN(req.params.dungeonId)) return next()
     Dungeon.remove(req.params.dungeonId)
         .then((dungeon) => {
@@ -41,7 +57,7 @@ router.delete('/:dungeonId', function (req, res, next) {
 })
 
 // create
-router.post('/', function (req, res, next) {
+router.post('/', (req, res, next) => {
     //TODO re allow user loged
     // if(!req.body.email || !req.body.password || !req.body.pseudo) return next(new Error('Bad credentials'))
     req.body.exp = req.body.exp || 0
@@ -57,7 +73,7 @@ router.post('/', function (req, res, next) {
 })
 
 // get All
-router.get('/', function (req, res, next) {
+router.get('/', (req, res, next) => {
     if (!req.query.limit || isNaN(req.query.limit)) req.query.limit = 10
     if (!req.query.offset || isNaN(req.query.offset)) req.query.offset = 0
     Dungeon.getAll(parseInt(req.query.limit), parseInt(req.query.offset))

@@ -34,6 +34,7 @@ app.use(function(req, res, next) {
   
 // Gestion des erreurs
 app.use(function(err, req, res, next) {
+    console.err("error middlware", err)
     err.message = err.message || "Something went wrong"
     err.status = err.status || 500
 

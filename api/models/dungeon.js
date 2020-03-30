@@ -53,6 +53,12 @@ module.exports = {
         return Dungeons.findOneAndUpdate({id: dungeonId}, toUpdate)
     },
 
+    addPath: async (dungeonId, path) => {
+        let dungeon = await Dungeons.findOne({id: dungeonId})
+        dungeon.paths.push(path)
+        return await Dungeons.findOneAndUpdate({id: dungeonId}, dungeon)
+    },
+
     remove: (dungeonId) => {
         return Dungeons.findOneAndRemove({id: dungeonId})
     },
