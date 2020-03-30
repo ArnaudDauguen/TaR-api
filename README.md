@@ -1,6 +1,6 @@
 # I. Presentation
 Try and Redie is the 'Fil Rouge' project for Ingésup B3a.
-Goals are to create a game and an AI to play in. This project game is, for the player, to design maze as complexe as posible. The AI will someday solve the maze by diying inside and founding the best path. Once completed, the player will gain score based on the number of the AI deaths.
+Goals are to create a game and an AI to play in. This project game is, for the player, to design maze as complex as possible. The AI will someday solve the maze by dying inside and founding the best path. Once completed, the player will gain score based on the number of the AI deaths.
 
 # 2. Install API
 ```
@@ -43,6 +43,7 @@ mongoimport -c users -d TaR < Users.json
 ## Start API
 * In a command line, move to TaR-api/api
 ```
+npm install
 npm run start
 ```
 
