@@ -28,8 +28,8 @@ mongoimport -c terrains -d TaR < Terrain.json
 mongoimport -c users -d TaR < Users.json
 ```
 ### Or import manually
-* install MongoDb
-* install GUI for mongo (Compass or Atlas) to manage datas
+* install [MongoDb](https://docs.mongodb.com/manual/installation/)
+* install GUI for mongo ([Compass](https://www.mongodb.com/products/compass) or Atlas) to manage datas
 * import datas
     * create database named `TaR`
     * create collection named `Dungeons` and import `TaR-api/db/Dungeons.json` or copy-paste his content
@@ -41,11 +41,15 @@ mongoimport -c users -d TaR < Users.json
 
 
 ## Start API
-* move to TarR-api/api
+* In a command line, move to TaR-api/api
 ```
 npm run start
 ```
 
 
-# 3. Install level editor
-Please visit [this page](https://github.com/ArnaudDauguen/TaR_levelEditor)
+# 3. Pickup level editor
+Please visit [my second repo](https://github.com/ArnaudDauguen/TaR_levelEditor)
+
+
+# 4. Pickup game client
+Please visit [my second repo](https://github.com/ArnaudDauguen/TaR_levelEditor)
