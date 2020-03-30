@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   if(!req.query.offset || isNaN(req.query.offset)) req.query.offset = 0
   User.getAll(parseInt(req.query.limit), parseInt(req.query.offset))
   .then((users) => {
-    res.status(200).json(users);
+    res.status(200).json(users)
   })
   .catch((err) => {
     return next(err)

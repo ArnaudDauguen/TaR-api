@@ -73,7 +73,7 @@ router.get('/', function (req, res, next) {
                 stuff: d.stuff, 
                 paths: d.paths, 
             }})
-            res.status(200).json(utilInfos);
+            res.status(200).json(utilInfos)
         })
         .catch((err) => {
             console.log(err)

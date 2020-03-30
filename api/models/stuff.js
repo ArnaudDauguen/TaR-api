@@ -19,38 +19,38 @@ module.exports = {
     },
 
     getAll: (limit, offset) => {
-        return Stuffs.find().skip(offset).limit(limit);
+        return Stuffs.find().skip(offset).limit(limit)
     },
 
     getAllWithout_id: async (limit, offset) => {
-        return await Stuffs.find({},{"_id": 0}).skip(offset).limit(limit).exec();
+        return await Stuffs.find({},{"_id": 0}).skip(offset).limit(limit).exec()
     },
 
     insert: async (params) => {
-        const lastId = await Stuffs.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1; // recup le plus grand id, +1
+        const lastId = await Stuffs.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1 // recup le plus grand id, +1
         params.id = lastId.id +1
-        return Stuffs.create(params);
+        return Stuffs.create(params)
     },
 
     update: (stuffId, params) => {
-        //possibleKeys = ['name', 'price', 'type', 'attack', 'armor'];
-        const toUpdate = {};
+        //possibleKeys = ['name', 'price', 'type', 'attack', 'armor']
+        const toUpdate = {}
 
-        if(params.name) toUpdate.name = params.name;
-        if(params.price) toUpdate.price = params.price;
-        if(params.type) toUpdate.type = params.type;
-        if(params.attack) toUpdate.attack = params.attack;
-        if(params.armor) toUpdate.armor = params.armor;
+        if(params.name) toUpdate.name = params.name
+        if(params.price) toUpdate.price = params.price
+        if(params.type) toUpdate.type = params.type
+        if(params.attack) toUpdate.attack = params.attack
+        if(params.armor) toUpdate.armor = params.armor
 
-        return Stuffs.findOneAndUpdate({id: stuffId}, toUpdate);
+        return Stuffs.findOneAndUpdate({id: stuffId}, toUpdate)
     },
 
     remove: (stuffId) => {
-        return Stuffs.findOneAndRemove({id: stuffId});
+        return Stuffs.findOneAndRemove({id: stuffId})
     },
 
     count: () => {
-      return Stuffs.count();
+      return Stuffs.count()
     },
 
     

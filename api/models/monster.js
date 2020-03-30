@@ -14,35 +14,35 @@ module.exports = {
     },
 
     getAll: async (limit, offset) => {
-        return await Monsters.find().skip(offset).limit(limit);
+        return await Monsters.find().skip(offset).limit(limit)
     },
 
     getAllWithout_id: async (limit, offset) => {
-        return await Monsters.find({},{"_id": 0}).skip(offset).limit(limit).exec();
+        return await Monsters.find({},{"_id": 0}).skip(offset).limit(limit).exec()
     },
 
     insert: async (params) => {
-        const lastId = await Monsters.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1; // recup le plus grand id, +1
+        const lastId = await Monsters.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1 // recup le plus grand id, +1
         params.id = lastId.id +1
-        return Monsters.create(params);
+        return Monsters.create(params)
     },
 
     update: (monsterId, params) => {
-        //possibleKeys = ['name', 'hp'];
-        const toUpdate = {};
+        //possibleKeys = ['name', 'hp']
+        const toUpdate = {}
 
-        if(params.name) toUpdate.name = params.name;
-        if(params.hp) toUpdate.hp = params.hp;
+        if(params.name) toUpdate.name = params.name
+        if(params.hp) toUpdate.hp = params.hp
 
-        return Monsters.findOneAndUpdate({id: monsterId}, toUpdate);
+        return Monsters.findOneAndUpdate({id: monsterId}, toUpdate)
     },
 
     remove: (monsterId) => {
-        return Monsters.findOneAndRemove({id: monsterId});
+        return Monsters.findOneAndRemove({id: monsterId})
     },
 
     count: () => {
-      return Monsters.count();
+      return Monsters.count()
     },
 
     

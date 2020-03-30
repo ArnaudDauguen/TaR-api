@@ -16,7 +16,7 @@ module.exports = {
     },
 
     getAll: (limit, offset) => {
-        return Users.find().skip(offset).limit(limit);
+        return Users.find().skip(offset).limit(limit)
     },
     
     insert: async (params) => {
@@ -29,13 +29,13 @@ module.exports = {
     },
     
     update: (userId, params) => {
-        //possibleKeys = ['email', 'pseudo', 'password', 'exp'];
-        const toUpdate = {};
+        //possibleKeys = ['email', 'pseudo', 'password', 'exp']
+        const toUpdate = {}
 
-        if(params.email) toUpdate.email = params.email;
-        if(params.pseudo) toUpdate.pseudo = params.pseudo;
-        if(params.password) toUpdate.password = params.password;
-        if(params.exp) toUpdate.exp = params.exp;
+        if(params.email) toUpdate.email = params.email
+        if(params.pseudo) toUpdate.pseudo = params.pseudo
+        if(params.password) toUpdate.password = params.password
+        if(params.exp) toUpdate.exp = params.exp
 
         return Users.findOneAndUpdate({id: userId}, toUpdate)
         .then((user) => {
@@ -44,11 +44,11 @@ module.exports = {
     },
 
     remove: (userId) => {
-        return Users.findOneAndRemove({id: userId});
+        return Users.findOneAndRemove({id: userId})
     },
 
     count: () => {
-      return Users.count();
+      return Users.count()
     }
     
 }

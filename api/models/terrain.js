@@ -15,35 +15,35 @@ module.exports = {
     },
 
     getAll: async (limit, offset) => {
-        return await Terrains.find().skip(offset).limit(limit);
+        return await Terrains.find().skip(offset).limit(limit)
     },
 
     getAllWithout_id: async (limit, offset) => {
-        return await Terrains.find({},{"_id": 0}).skip(offset).limit(limit).exec();
+        return await Terrains.find({},{"_id": 0}).skip(offset).limit(limit).exec()
     },
 
     insert: async (params) => {
-        const lastId = await Terrains.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1; // recup le plus grand id, +1
+        const lastId = await Terrains.findOne({},{id: 1, _id: 0}).sort({id:-1}).limit(1) +1 // recup le plus grand id, +1
         params.id = lastId.id +1
-        return Terrains.create(params);
+        return Terrains.create(params)
     },
 
     update: (terrainId, params) => {
-        //possibleKeys = ['name', 'effect'];
-        const toUpdate = {};
+        //possibleKeys = ['name', 'effect']
+        const toUpdate = {}
 
-        if(params.name) toUpdate.name = params.name;
-        if(params.effect) toUpdate.effect = params.effect;
+        if(params.name) toUpdate.name = params.name
+        if(params.effect) toUpdate.effect = params.effect
 
-        return Terrains.findOneAndUpdate({id: terrainId}, toUpdate);
+        return Terrains.findOneAndUpdate({id: terrainId}, toUpdate)
     },
 
     remove: (terrainId) => {
-        return Terrains.findOneAndRemove({id: terrainId});
+        return Terrains.findOneAndRemove({id: terrainId})
     },
 
     count: () => {
-      return Terrains.count();
+      return Terrains.count()
     },
 
     
