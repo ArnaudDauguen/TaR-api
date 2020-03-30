@@ -56,6 +56,7 @@ module.exports = {
     addPath: async (dungeonId, path) => {
         let dungeon = await Dungeons.findOne({id: dungeonId})
         dungeon.paths.push(path)
+        dungeon.timeFailed +=1
         return await Dungeons.findOneAndUpdate({id: dungeonId}, dungeon)
     },
 

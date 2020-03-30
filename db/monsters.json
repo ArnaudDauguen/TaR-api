@@ -1,2 +1,3 @@
 {"_id":{"$oid":"5dd4128833de2824ef6705f0"},"id":{"$numberInt":"1000"},"name":"dragon","hp":{"$numberInt":"200"},"damage":{"$numberInt":"15"}}
-{"_id":{"$oid":"5e81bacdea8ff82e24d0ff97"},"id":{"$numberInt":"1001"},"name":"sauron","hp":{"$numberInt":"1500"},"damage":{"$numberInt":"75"}}
+{"_id":{"$oid":"5e81bacdea8ff82e24d0ff97"},"id":{"$numberInt":"1001"},"name":"sauron","hp":{"$numberInt":"1000"},"damage":{"$numberInt":"75"}}
+{"_id":{"$oid":"5e81f85aea8ff82e24d0ff9a"},"id":{"$numberInt":"1002"},"name":"minothaurus","hp":{"$numberInt":"2000"},"damage":{"$numberInt":"10"}}
