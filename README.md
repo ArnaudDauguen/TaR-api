@@ -48,8 +48,8 @@ npm run start
 
 
 # 3. Pickup level editor
-Please visit [my second repo](https://github.com/ArnaudDauguen/TaR_levelEditor)
+Please visit my [second repo](https://github.com/ArnaudDauguen/TaR_levelEditor)
 
 
 # 4. Pickup game client
-Please visit [my second repo](https://github.com/ArnaudDauguen/TaR_levelEditor)
+Please visit my [third repo](https://github.com/ArnaudDauguen/TaR_gameClient)
